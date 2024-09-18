@@ -5,13 +5,13 @@ To do this, we need TWO SSH instances to access Rockfish.
 - Mac: Two command prompt instances
 - Linux: Two shell instances
 
-***In the first ssh window,***
+***In the first SSH window,***
 
-you will SSH into Rockfish. Load your Python environment:
+You will SSH into Rockfish. Load your Python environment:
 
 `$ source ~/python_environments/cool_enviro_you_made/bin/activate`
 
-We are going to run Jupyter Notebook and tell Rockfish which port to send the information to our computer. The port you pick should be random from 2000 to 9000 so you do not conflict with other people on the cluster. I am going to use PORT=1234 for this example.
+We will run Jupyter Notebook and tell Rockfish which port to send the information to our computer. The port you pick should be random from 2000 to 9000 so you do not conflict with other people on the cluster. I am going to use PORT=1234 for this example.
 
 To start Jupyter Notebooks, we will run the following command:\
 `$jupyter-notebook --port=1234 --ip=rockfish --no-browser`
