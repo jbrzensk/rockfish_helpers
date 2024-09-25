@@ -1,6 +1,30 @@
-#!/bin/sh
-
+#!/usr/bin/env bash
+# ======================================================================
+# NAME
+#
+#   jupyter_notebook_helper.sh
+#
+# DESCRIPTION
+#
+#   A besh shell utility to help you create a Jupyter Notebook
+#   instance on a remote computer, and returns the ssh command
+#   which will connect with the Jupyter Notebook instance 
+#   generated.
+#
+# USAGE
+#
+#   Start Jupyter Notebook Instance
+#
+#     ./jupyter_notebook_helper.sh
+#
+# LAST UPDATED
+#
+#   Sptember 25, 2024
+#
+# ----------------------------------------------------------------------
+#
 # GET INFO ABOUT CURRENT MACHINE ENVIRONMENT
+#
 port=$(shuf -i8000-9999 -n1)
 node=$(hostname -s)
 user=$(whoami)
@@ -29,4 +53,5 @@ localhost:${port}  (prefix w/ https:// if using password)
 
 # load modules or conda environments here
 
+# Run Jupyter Notebook
 jupyter-notebook --no-browser --port=${port} --ip=${node}

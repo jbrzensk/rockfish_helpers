@@ -1,16 +1,38 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# ======================================================================
+# NAME
+#
+#   environment_builder.sh
+#
+# DESCRIPTION
+#
+#   A bash shell utility to help you create a Python environment on 
+#   your Linux machine
+#
+# USAGE
+#
+#   Create a Python Environment in the local folder
+#
+#     ./environemnt_builder.sh
+#
+# LAST UPDATED
+#
+#   September 25, 2024
+#
+# ----------------------------------------------------------------------
+
 ###########################################################
 # Python Environment Builder                              #
 ###########################################################
-#
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-#
+
 echo
-echo
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo This script simplifies building a Python environment 
 echo for you, that can interact with ESMF and netCDF files.
 echo It will come with many libraries pre-installed.
-echo
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo
 echo What would you like the environment called?
 
@@ -19,6 +41,7 @@ read -p 'Environment Name: ' ENV_NAME
 echo
 echo The environment will be called $ENV_NAME
 echo
+
 ################################################################
 ## CREATING THE DIRECTORY
 ################################################################
@@ -29,13 +52,14 @@ echo "New folder will be created at $PYTHON_ENV_ROOT/$ENV_NAME"
 read -r -p "Is this desired?  [y/N] " RESPONSE
 echo
 echo
+
 if [[ "$RESPONSE" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     echo creating directories
 else
     echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     echo OK. Not making the directory. If you want this in
-    echo a specific location, lpease run this script from
+    echo a specific location, please run this script from
     echo that directory. Exiting...
     echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     exit
@@ -45,7 +69,9 @@ fi
 ################################################################
 ## PICKING PYTHON VERSION
 ################################################################
+
 FILELIST=($(ls -1 /usr/bin/python*))
+
 echo
 echo Found the following Python versions on the computer:
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,8 +82,6 @@ done
 NUM_PYTHONS=$((i+1))
 
 echo
-#echo Which would you like to use for the environment?
-# echo There are $NUM_PYTHONS pythons.
 echo Please note, for ESMF and xESMF, you need to choose the Python3.12
 
 CHOICE=0
@@ -77,10 +101,10 @@ done
 ################################################################
 ## BUILD PYTHON ENVIRONEMNT
 ################################################################
+
 PYTHON_CMD="${FILELIST[${PYTHON_CHOICE}]}"
+
 echo
-#echo "Python command file is ${PYTHON_CMD}"
-#echo
 echo Building environment
 echo
 echo "${PYTHON_CMD}" -m venv "${ENV_NAME}"
@@ -96,14 +120,6 @@ sleep 1
 # LOAD NEW ENVIRONMENT
 source "${PYTHON_ENV_ROOT}"/"${ENV_NAME}"/bin/activate
 echo
-#echo We are currently in environment:
-#INVENV=$(python -c 'import sys; print ("1" if hasattr(sys, "real_prefix") else "0")')
-
-#echo "${INVENV}"
-#which python
-#which pip
-#echo
-#sleep 5
 
 echo Loading and installing EMSRF and MOM specific helpers
 echo
@@ -127,8 +143,9 @@ echo
 echo done.
 
 ################################################################
-## FINAL HELPER ISNTRUCTIONS
+## FINAL HELPER INSTRUCTIONS
 ################################################################
+
 echo You can load the environment with the command:
 echo "source $PYTHON_ENV_ROOT/$ENV_NAME/bin/activate"
 echo 
