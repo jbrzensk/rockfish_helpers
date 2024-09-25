@@ -25,6 +25,8 @@
 #
 # GET INFO ABOUT CURRENT MACHINE ENVIRONMENT
 #
+# Picking a random port. Does rockfish have these open??
+# This picks a port, and rockfish decides the closest to use.
 port=$(shuf -i8000-9999 -n1)
 node=$(hostname -s)
 user=$(whoami)
