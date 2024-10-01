@@ -17,7 +17,7 @@
 #
 # LAST UPDATED
 #
-#   September 25, 2024
+#   October 1, 2024
 #
 # ----------------------------------------------------------------------
 generate_array() {
@@ -118,9 +118,4 @@ echo "Revert time as record dimension"
 ncpdq -a time,lon "${OUT_FILE}" "${OUT_FILE}".nc
 
 rm -f "${OUT_FILE}"
-
-
-
-
-
 
