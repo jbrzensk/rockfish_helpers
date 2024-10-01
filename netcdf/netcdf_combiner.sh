@@ -44,9 +44,8 @@ generate_array() {
 }
 
 ###########################################################
-# netcdf splitter                                         #
+# netcdf combiner                                         #
 ###########################################################
-
 
 # CHECK IF THE CORRECT NUMBER OF ARGUMENTS ARE PROVIDED
 if [ "$#" -ne 3 ]; then
@@ -69,7 +68,6 @@ if (( ! NUM_FILES > 1 )); then
     echo "exiting..."
 fi
 
-
 echo
 echo "Input file stem is ${IN_FILE_STEM}."
 echo
@@ -82,14 +80,12 @@ else
     echo "Found input file, continuing..."
 fi
 
-
 # Change record dimension to Longitude for concatenating
 for ((i = 1; i <= NUM_FILES; i++)); do
     
     SMALL_FILE1="${IN_FILE_STEM}"_"${i}".nc
     #SMALL_REDEFINED="${SMALL_FILE1}"_xdim.nc
     SMALL_REDEFINED="${IN_FILE_STEM}"_"${i}"_xdim.nc
-
 
     echo "ncpdq -a lon,time "${SMALL_FILE1}" "${SMALL_REDEFINED}""
 
@@ -118,4 +114,3 @@ echo "Revert time as record dimension"
 ncpdq -a time,lon "${OUT_FILE}" "${OUT_FILE}".nc
 
 rm -f "${OUT_FILE}"
-
