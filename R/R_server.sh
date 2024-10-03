@@ -35,8 +35,9 @@
 R_CONTAINER=/home/jabrzenski/USER/containers/rstudio_4.2.sif
 
 WORKING_DIR=$(pwd)
-
-
+USER_NAME=$(whoami)
+NODE=$(hostname -s)
+CLUSTER=$(hostname -f | awk -F"." '{print $2}')
 
 # Check if singularity module has been loaded
 if ! command -v singularity 2>&1 >/dev/null
@@ -85,7 +86,7 @@ PID=$!
 cat 1>&2 <<END
 1. SSH tunnel from your workstation using the following command:
 
-   ssh -N -L 8787:${HOSTNAME}:${PORT} ${SINGULARITYENV_USER}@LOGIN-HOST
+   ssh -N -L 8787:${HOSTNAME}:${PORT} ${USER_NAME}@${NODE}.${CLUSTER}.edu 
 
    and point your web browser to http://localhost:8787
 
