@@ -11,7 +11,7 @@
 #   web browser. This script generates some directories, so for sanity
 #   you should run this in the same location each time.
 #
-#  More R libraries can be donwloaded by runnign the command:
+#  More R libraries can be downloaded by running the command:
 #
 #     singularity pull docker://rocker/rXXXX
 #
@@ -28,7 +28,7 @@
 #
 # LAST UPDATED
 #
-#   October 3, 2024
+#   October 7, 2024
 #
 # ----------------------------------------------------------------------
 # Singularity R container version
