@@ -38,6 +38,21 @@ BOLD='\033[0;1m'
 NC='\033[0m' # Reset all modes
 
 
+#FUNCTION TO KILL ALL SPAWNED PROCESSES
+cleanup() {
+  echo "Terminating all spawned processes..."
+  for pid in "${pids[@]}"; do
+    kill "$pid" 2>/dev/null
+  done
+  echo "Check the SCRATCH directory for any stray files."
+  exit 0
+}
+
+# EMPTY ARRAY 
+pids=()
+
+# Trap Ctrl-C (SIGINT) and call cleanup function
+trap cleanup SIGINT
 
 echo
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -485,7 +500,8 @@ then
     "${ENCOUNTER_DISC}" "${ENCOUNTER_START}" "${ENCOUNTER_END}" \
     "${K_DISC}" "${K_START}" "${K_END}" \
     "${K50_DISC}" "${K50_START}" "${K50_END}"
-
+    pids+=($!)
+    
 else
     echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     echo OK. Not running the program. You can always save
