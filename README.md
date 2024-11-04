@@ -10,8 +10,24 @@ This is separated into multiple folders:
   
 - [jupyter_notebook_helper](/python/jupyter_notebook_helper.sh): This is a script for starting a Jupyter notebook instance. It also gives the command to SSH tunnel into Rockfish to your Jupyter instance.
 
+## [netcdf](/netcdf): netCDF Helper Scripts
+
+- [netcdf_splitter](/netcdf/netcdf_splitter): Splits netCDF files into slices, with a common name stem. Computations are generally faster on smaller netCDF files. Files cna be combined at the end with [net_cdf_combiner](/netcdf/netcdf_combiner).
+
+- [netcdf_combiner](/netcdf/netcdf_combiner): Combines what splitter takes apart.
+
+- [VolMP](/netcdf/VolMP): Scripts for integrating and averaging some specific plankton and fish values from VolMP data sets. See here for how to do weighted averaging and integrating.
+
 ## [fortran](/fortran): Fortran sample code
 
 - [hello_world](/fortran/examples/hello_world.f90): A hello world example written in Fortran.
 
 - [hello_world_mpi](/fortran/examples/hello_world_mpi.f90): A hello world example written in MPI and Fortran.
+
+## [bash](/bash): bash scripts for commonly repeated tasks. 
+
+## [R](/R) : R and R studio specific helpers
+
+- [R_server.sh](/R/R_server.sh): Launches a containerized R which contains most of ESMF scripts and is parallelized.
+
+## [MOM6](/MOM6): MOM6 Interactive runtime environment
