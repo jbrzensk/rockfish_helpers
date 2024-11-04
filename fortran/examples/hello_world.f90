@@ -1,9 +1,33 @@
-! hello_world
+! ======================================================================
+! NAME
 !
-! BY: Jared Brzenski
+!   hello_world.f90
 !
-! A simple hello-world written in Fortran with
-! some basic usage
+! AUTHOR
+!
+!   Jared Brzenski
+!
+! DESCRIPTION
+!
+!   A simple hello world program written in Fortran 90
+!
+! USAGE
+!
+!   Compile and run with the following commands:
+!
+!     gfortran hello_world.f90
+!     ./a.out
+!
+!   OR compile and run with the included Makefile
+!
+!     make all
+!     ./hello
+!
+! LAST UPDATED
+!
+!   November 3, 2024
+!
+! ----------------------------------------------------------------------
 
 program hello_world
         ! Fortran code sets the variables used

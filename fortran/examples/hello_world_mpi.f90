@@ -1,9 +1,37 @@
-! hello_world_mpi
+! ======================================================================
+! NAME
 !
-! BY: Jared Brzenski
+!   hello_world_mpi.f90
 !
-! A simple hello-world written in Fortran with
-! some basic usage with MPI
+! AUTHOR
+!
+!   Jared Brzenski
+!
+! DESCRIPTION
+!
+!   A simple hello world program written in MPI and Fortran 90, which
+!   illustrates the basics of compiling and running a program to use
+!   MPI.
+!
+! USAGE
+!
+!   Compile and run with the following commands:
+!
+!     mpifort hello_world_mpi.f90
+!     ./a.out
+!     mpiexec -np 10 ./a.out
+!
+!   OR compile and run with the included Makefile
+!
+!     make all
+!     ./hello_mpi
+!     mpiexec -np 10 ./hello_mpi
+!
+! LAST UPDATED
+!
+!   November 3, 2024
+!
+! ----------------------------------------------------------------------
 !
 PROGRAM hello_world_mpi
 !
