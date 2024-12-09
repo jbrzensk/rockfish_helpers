@@ -3,6 +3,7 @@
 This will explain the steps to setup a ssh key on a remote server, so you do not have to type your password to login from a specific computer.
 
 **NOTE: This must be done from each computer you wish to login from**
+
 **NOTE 2: This has been tested for Linux, and Windows using MobeXTerm**
 
 ## 1) Check for existing keys
