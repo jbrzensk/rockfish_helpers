@@ -34,3 +34,14 @@ This starts a parent process, which spawns five child processes. These five proc
 
 Usually, you would need to kill off each child process individually, but the parent tracks the PIDs of the child processes, and when the parent is killed, it also kills the PIDs it spawned, using the ```cleanup``` function in parent.sh You can add this kind of tracking to your bash script to help kill many processes that are spawned in parallel.
 
+## color_text
+Some bash scripts showing how to display text and special characters in colors
+Navigate to the ```color_text``` folder and run the command:
+```./color_text.sh```
+- Will display some basic examples of colorizing text with ```echo``` and ```printf``` statements. Also shows how to make functions and display those with ```printf``` commands
+
+```rf_splash.sh```
+- Will display a relpica of the rockfish splash screen.
+
+```print256colors.sh```
+- Prints out all 256 colors a linux bash display is capable of showing.
