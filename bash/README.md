@@ -30,18 +30,20 @@ A sample bash script showing how to kill multiple processes with a single Ctrl-C
 Navigate to the ```catch_example``` folder and run the command:
 ```./parent.sh```
 
-This starts a parent process, which spawns five child processes. These five processes were spawned from the original parent process and update the interface every few seconds to show they are still running.
+This starts a parent process, which spawns five child processes. These five processes were spawned from the original parent process, and the interface is updated every few seconds to show that they are still running.
 
-Usually, you would need to kill off each child process individually, but the parent tracks the PIDs of the child processes, and when the parent is killed, it also kills the PIDs it spawned, using the ```cleanup``` function in parent.sh You can add this kind of tracking to your bash script to help kill many processes that are spawned in parallel.
+Usually, you would need to kill off each child process individually, but the parent tracks the PIDs of the child processes, and when the parent is killed, it also kills the PIDs it spawned, using the ```cleanup``` function in parent.sh You can add this tracking to your bash script to help kill many processes that are spawned in parallel.
 
 ## color_text
-Some bash scripts showing how to display text and special characters in colors
-Navigate to the ```color_text``` folder and run the command:
+Some bash scripts show how to display text and special characters in colors.
+
+Navigate to the ```color_text``` folder and run the commands:
+
 ```./color_text.sh```
-- Will display some basic examples of colorizing text with ```echo``` and ```printf``` statements. Also shows how to make functions and display those with ```printf``` commands
+- Will display some basic examples of colorizing text with ```echo``` and ```printf``` statements. It also shows how to make functions and display those with ```printf``` commands
 
 ```rf_splash.sh```
-- Will display a relpica of the rockfish splash screen.
+- A representation of the rockfish splash screen will be displayed.
 
 ```print256colors.sh```
-- Prints out all 256 colors a linux bash display is capable of showing.
+- Prints out all 256 colors a Linux bash display can show. Color codes can be used; see ```rf_splash.sh``` for examples of using the color codes.
