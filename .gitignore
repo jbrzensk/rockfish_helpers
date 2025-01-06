@@ -6,3 +6,8 @@ node_modules/
 *.tsbuildinfo
 
 .nc
+
+R/database.conf
+R/var-lib-rstudio-server
+
+
