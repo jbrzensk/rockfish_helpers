@@ -65,5 +65,5 @@ mkdir -p "$DEST_DIR"
 export REMOTE_SERVER DEST_DIR
 
 # Use parallel to run rsync for each file path
-cat "$FILE_LIST" | parallel -j "$NUM_PARALLEL" rsync -avzP "$REMOTE_SERVER:{}" "$DEST_DIR/"
+cat "$FILE_LIST" | parallel --line-buffer --keep-order -j "$NUM_PARALLEL" rsync -avzP "$REMOTE_SERVER:{}" "$DEST_DIR/"
 
