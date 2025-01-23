@@ -32,7 +32,7 @@
 #
 # ----------------------------------------------------------------------
 # Singularity R container version
-R_CONTAINER=/home/jabrzenski/USER/containers/rstudio_4.2.sif
+R_CONTAINER=/home/jabrzenski/USER/containers/rstudio_4.2.2.sif
 
 WORKING_DIR=$(pwd)
 USER_NAME=$(whoami)
