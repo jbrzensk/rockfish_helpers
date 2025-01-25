@@ -24,11 +24,13 @@
 # Remote server details
 # For ease, setup the ssh keys so you are not asked for the password!
 # [ CHANGE ME ]
-REMOTE_SERVER="jabrzenski@monkfish.ucsd.edu"
+# Use monkfish to download the test files in filelist
+REMOTE_SERVER="user@monkfish.ucsd.edu"
 
 # Destination directory where files will be downloaded
 # [ CHANGE ME ]
-DEST_DIR="~/test_downloads"
+# Use a location on rockfish to save the test files.
+DEST_DIR="/home/user/location"
 # ----------------------------------------------------------------------
 
 # CHECK IF THE CORRECT NUMBER OF ARGUMENTS ARE PROVIDED
