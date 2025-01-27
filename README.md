@@ -4,11 +4,18 @@ Scripts and environments for the rockfish server at SIO
 
 This is separated into multiple folders:
 
-## [python](/python): Python helpers for rockfish    
+## [MOM6](/MOM6): MOM6 Interactive runtime environment
 
-- [environment_builder](/python/environment_builder.sh): This function builds an environment for MOM analysis. The code can be reused to build other environments for other projects. It also included a *[mom_requirements.txt](/python/mom_requirements.txt)* file, which has everything pip needs to create an environment for running the diagnostics in the MOM6 diagnostics folder.
-  
-- [jupyter_notebook_helper](/python/jupyter_notebook_helper.sh): This is a script for starting a Jupyter notebook instance. It also gives the command to SSH tunnel into Rockfish to your Jupyter instance.
+## [R](/R) : R and R studio specific helpers
+- [R_server.sh](/R/R_server.sh): Launches a containerized R which contains most of ESMF scripts and is parallelized.
+
+## [bash](/bash): bash scripts for commonly repeated tasks. 
+
+## [fortran](/fortran): Fortran sample code
+
+- [hello_world](/fortran/examples/hello_world.f90): A hello world example written in Fortran.
+
+- [hello_world_mpi](/fortran/examples/hello_world_mpi.f90): A hello world example written in MPI and Fortran.
 
 ## [netcdf](/netcdf): netCDF Helper Scripts
 
@@ -18,16 +25,10 @@ This is separated into multiple folders:
 
 - [VolMP](/netcdf/VolMP): Scripts for integrating and averaging some specific plankton and fish values from VolMP data sets. See here for how to do weighted averaging and integrating.
 
-## [fortran](/fortran): Fortran sample code
+## [python](/python): Python helpers for rockfish    
 
-- [hello_world](/fortran/examples/hello_world.f90): A hello world example written in Fortran.
+- [environment_builder](/python/environment_builder.sh): This function builds an environment for MOM analysis. The code can be reused to build other environments for other projects. It also included a *[mom_requirements.txt](/python/mom_requirements.txt)* file, which has everything pip needs to create an environment for running the diagnostics in the MOM6 diagnostics folder.
+  
+- [jupyter_notebook_helper](/python/jupyter_notebook_helper.sh): This is a script for starting a Jupyter notebook instance. It also gives the command to SSH tunnel into Rockfish to your Jupyter instance.
 
-- [hello_world_mpi](/fortran/examples/hello_world_mpi.f90): A hello world example written in MPI and Fortran.
-
-## [bash](/bash): bash scripts for commonly repeated tasks. 
-
-## [R](/R) : R and R studio specific helpers
-
-- [R_server.sh](/R/R_server.sh): Launches a containerized R which contains most of ESMF scripts and is parallelized.
-
-## [MOM6](/MOM6): MOM6 Interactive runtime environment
+## [ssh](/ssh): How to setup SSH keys for password-less login
