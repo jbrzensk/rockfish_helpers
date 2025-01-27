@@ -47,3 +47,14 @@ Navigate to the ```color_text``` folder and run the commands:
 
 ```print256colors.sh```
 - Prints out all 256 colors a Linux bash display can show. Color codes can be used; see ```rf_splash.sh``` for examples of using the color codes.
+
+## parallel_download
+An example of how to download, in parallel, a set of files from one remote server, to the current server.
+It is currently setup to download 10-2GB files from monkfish to rockfish.
+(You must have ssh keys setup between rockfish nad monkfish to run the example)
+- Login to rockfish and navigate to wherever you have rockfish_helpers/bash/parallel_download
+- Edit the parallel_download.sh file to reflet your user name, and the full install location.
+- View the filenames.txt file ( ```cat filenames.txt``` ) to see where the desired files are located.
+- To download the 10 files in parallel, run ```./parallel_download.sh 10 filenames.txt```
+- You will see output for only the first parallel file ( the others are done in the background )
+  
