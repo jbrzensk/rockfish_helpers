@@ -2,23 +2,23 @@
 # ======================================================================
 # NAME
 #
-#   netcdf_splitter.sh
+#   netcdf_splitter_parallel.sh
 #
 # DESCRIPTION
 #
 #   A bash shell utility to split a global netCDF file into N subdomains, 
 #   splitting on a longitude value. Output files will be named
-#   out_filename_stem_num.nc, where 'num' is 1->N.
+#   out_filename_stem_num.nc, where 'num' is 1->N, run in parallel.
 #
 # USAGE
 #
 #   Split netCDF into N parts by longitude
 #
-#     ./netcdf_splitter.sh N in_filename out_filename_stem
+#     ./netcdf_splitter_parallel.sh N in_filename out_filename_stem
 #
 # LAST UPDATED
 #
-#   October 1, 2024
+#   January 6, 2025
 #
 # ----------------------------------------------------------------------
 generate_array() {
@@ -171,13 +171,27 @@ for ((i = 1; i <= NUM_FILES; i++)); do
 done
 
 # Output the 2D array (chunks)
-for ((i = 1; i <= NUM_FILES; i++)); do
-    echo "Chunk $i: ${chunks[i]}"
-    SMALL_CHUNK=(${chunks[i]})
+#!/bin/bash
+
+export IN_FILE OUT_FILE_STEM  # Export variables for use in the parallel subprocesses
+
+seq 1 "$NUM_FILES" | parallel -j 4 '
+    echo "Chunk {}: ${chunks[{}]}"
+    SMALL_CHUNK=(${chunks[{}]})
     MIN_LON=${SMALL_CHUNK[0]}
     MAX_LON=${SMALL_CHUNK[-1]}
-    OUTFILE="${OUT_FILE_STEM}"_"${i}".nc
+    OUTFILE="${OUT_FILE_STEM}_{}.nc"
     echo "Output file is ${OUTFILE}"
-    echo "ncks -d lon,"${MIN_LON}","${MAX_LON}" "${IN_FILE}" "${OUTFILE}" "
-    ncks -d lon,"${MIN_LON}","${MAX_LON}" "${IN_FILE}" "${OUTFILE}" 
-done
+    ncks -d lon,"${MIN_LON}","${MAX_LON}" "${IN_FILE}" "${OUTFILE}"
+'
+
+# for ((i = 1; i <= NUM_FILES; i++)); do
+#     echo "Chunk $i: ${chunks[i]}"
+#     SMALL_CHUNK=(${chunks[i]})
+#     MIN_LON=${SMALL_CHUNK[0]}
+#     MAX_LON=${SMALL_CHUNK[-1]}
+#     OUTFILE="${OUT_FILE_STEM}"_"${i}".nc
+#     echo "Output file is ${OUTFILE}"
+#     echo "ncks -d lon,"${MIN_LON}","${MAX_LON}" "${IN_FILE}" "${OUTFILE}" "
+#     ncks -d lon,"${MIN_LON}","${MAX_LON}" "${IN_FILE}" "${OUTFILE}" 
+# done
