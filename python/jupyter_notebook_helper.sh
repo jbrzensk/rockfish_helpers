@@ -31,7 +31,9 @@ port=$(shuf -i8000-9999 -n1)
 node=$(hostname -s)
 user=$(whoami)
 
-cluster=$(hostname -f | awk -F"." '{print $2}')
+#cluster=$(hostname -f | awk -F"." '{print $2}')
+# cluster not shown on monkfish.
+cluster="ucsd"
 
 # print tunneling instructions jupyter-log
 echo -e "
