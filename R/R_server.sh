@@ -32,7 +32,7 @@
 #
 # ----------------------------------------------------------------------
 # Singularity R container version
-R_CONTAINER=/home/jabrzenski/USER/containers/rstudio_4.2.sif
+R_CONTAINER=/home/jabrzenski/USER/containers/rstudio_4.2.2.sif
 
 WORKING_DIR=$(pwd)
 USER_NAME=$(whoami)
@@ -84,17 +84,21 @@ singularity exec    --bind run:/run,var-lib-rstudio-server:/var/lib/rstudio-serv
 PID=$!
 
 cat 1>&2 <<END
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 1. SSH tunnel from your workstation using the following command:
 
    ssh -N -L 8787:${HOSTNAME}:${PORT} ${USER_NAME}@${NODE}.${CLUSTER}.edu 
 
    and point your web browser to http://localhost:8787
 
-When done using RStudio Server, terminate the job by:
+When done using RStudio Server, terminate the container job by:
 
 1. Exit the RStudio Session ("power" button in the top right corner of the RStudio window)
-2. In the current window, run the following command:
+2. In the current window, you need to kill the 'starter' program.
+   Run the following command:
 
        kill -9 ${PID}
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 END

@@ -26,7 +26,7 @@ dask==2024.9.0
 debugpy==1.8.5
 decorator==5.1.1
 defusedxml==0.7.1
-esmpy @ file:///home/jabrzenski/esmf/src/addon/esmpy
+esmpy @ file:///home/jabrzenski/Programs/esmf/src/addon/esmpy
 executing==2.1.0
 fastjsonschema==2.20.0
 fonttools==4.53.1

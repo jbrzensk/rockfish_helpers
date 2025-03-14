@@ -1,0 +1,10 @@
+/scratch/TEST_TRANSFER/file_1
+/scratch/TEST_TRANSFER/file_2
+/scratch/TEST_TRANSFER/file_3
+/scratch/TEST_TRANSFER/file_4
+/scratch/TEST_TRANSFER/file_5
+/scratch/TEST_TRANSFER/file_6
+/scratch/TEST_TRANSFER/file_7
+/scratch/TEST_TRANSFER/file_8
+/scratch/TEST_TRANSFER/file_9
+/scratch/TEST_TRANSFER/file_10

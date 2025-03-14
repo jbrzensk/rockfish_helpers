@@ -69,40 +69,52 @@ fi
 ################################################################
 ## PICKING PYTHON VERSION
 ################################################################
-
-FILELIST=($(ls -1 /usr/bin/python*))
-
 echo
-echo Found the following Python versions on the computer:
-echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo Choose a Python version to use:
+echo 
+echo "If using ESMF, Python must be >= 3.12"
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo
 
-for i in "${!FILELIST[@]}"; do
-    echo "$((i)): ${FILELIST[i]}"
+# Get the system default Python version
+SYSTEM_PYTHON=$(command -v python3)
+SYSTEM_VERSION=$($SYSTEM_PYTHON --version 2>/dev/null | awk '{print $2}')
+
+# Find available Python versions in /usr/bin
+AVAILABLE_PYTHONS=($(ls /usr/bin/python* 2>/dev/null))
+
+# Combine system Python with available ones
+CHOICES=("(System Default: $SYSTEM_VERSION)")
+PYTHON_PATHS=("$SYSTEM_PYTHON")  # Store paths separately for easy selection
+
+for py in "${AVAILABLE_PYTHONS[@]}"; do
+    VERSION=$($py --version 2>/dev/null | awk '{print $2}')
+    CHOICES+=("$py ($VERSION)")
+    PYTHON_PATHS+=("$py")
 done
-NUM_PYTHONS=$((i+1))
 
-echo
-echo Please note, for ESMF and xESMF, you need to choose the Python3.12
-
-CHOICE=0
-
-while [ "$CHOICE" -eq 0 ];
-do
-    read -r -p "Which Python would you like to use for the environment?(number)" PYTHON_CHOICE
-    if (( $PYTHON_CHOICE <= $i )); then
-	    echo "You chose "${FILELIST[$PYTHON_CHOICE]}"".
-	    CHOICE=1
+# Display the choices in a selectable menu
+echo "Select a Python version to use:"
+select choice in "${CHOICES[@]}"; do
+    if [[ -n "$choice" ]]; then
+        # Extract the corresponding Python binary path
+        INDEX=$((REPLY - 1))  # Adjust for zero-based indexing
+        PYTHON_CMD="${PYTHON_PATHS[$INDEX]}"
+        echo "You selected: $PYTHON_CMD"
+        export PYTHON_CMD  # Make it available for the session
+        break
     else
-	    echo "${PYTHON_CHOICE} is not a valid option, please choose again."
+        echo "Invalid selection. Try again."
     fi
 done
-
 
 ################################################################
 ## BUILD PYTHON ENVIRONEMNT
 ################################################################
 
-PYTHON_CMD="${FILELIST[${PYTHON_CHOICE}]}"
+#PYTHON_CMD="${FILELIST[${PYTHON_CHOICE}]}"
 
 echo
 echo Building environment
@@ -125,12 +137,31 @@ echo Loading and installing EMSRF and MOM specific helpers
 echo
 echo pip install -r mom_requirements.txt
 echo
+
 # ACTUAL PIP INSTALL COMMAND, SHOULD CORRECTLY REFERENCE JAREDS
 # FILES IN HIS OWN FOLDER. SHOULD HAVE READ ACCES TO THEM.
+
 if [ ! -f mom_requirements.txt ]; then
     echo "Moving mom_requirements.txt file here..."
     cp "${SCRIPT_DIR}"/mom_requirements.txt .
 fi
+# CHECK TO SEE WHAT SERVER WE ARE ON, CHANGE PATH APPROPRIATELY
+SERVER_NAME=$(hostname)
+
+# ROCKFISH
+# esmpy @ file:///home/jabrzenski/esmf/src/addon/esmpy
+# MONKFISH
+# esmpy @ file:///home/jabrzenski/Programs/esmf/src/addon/esmpy
+
+if [[ "$SERVER_NAME" == "rockfish" ]]; then
+    ESMPY_PATH="file:///home/jabrzenski/esmf/src/addon/esmpy"
+elif [[ "$SERVER_NAME" == "monkfish" ]]; then
+    ESMPY_PATH="file:///home/jabrzenski/Programs/esmf-8.5.0/src/addon/esmpy"
+else
+    NEW_PATH="file:///default/path/to/esmpy"
+fi
+
+sed -i "s|esmpy @ file://.*|esmpy @ $ESMPY_PATH|" mom_requirements.txt
 
 pip install -r mom_requirements.txt
 
@@ -157,6 +188,9 @@ echo NOTE: To use the ESMR library, you need gcc13 installed.
 echo Either \'module load use.own\' and \'module load openmp\'
 echo or make sure gcc -v returns \> 13. Otherwise, xemsf will
 echo not work in Python.
+echo
+echo If you are on monkfish, please load the ESMF module with
+echo " 'module load esmf' "
 echo
 echo done.
 echo
