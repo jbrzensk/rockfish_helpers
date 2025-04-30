@@ -73,8 +73,11 @@ echo
 echo
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Choose a Python version to use:
-echo 
+echo
+echo
 echo "If using ESMF, Python must be >= 3.12"
+echo
+echo "If you do not see python3.12, maybe try 'ml python'?"
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo
 
@@ -141,10 +144,15 @@ echo
 # ACTUAL PIP INSTALL COMMAND, SHOULD CORRECTLY REFERENCE JAREDS
 # FILES IN HIS OWN FOLDER. SHOULD HAVE READ ACCES TO THEM.
 
-if [ ! -f mom_requirements.txt ]; then
-    echo "Moving mom_requirements.txt file here..."
-    cp "${SCRIPT_DIR}"/mom_requirements.txt .
-fi
+# Look for existing mom_requirements
+if [ -f mom_requirements.txt ]; then
+    echo "Moving existing mom_requirements to OLD_mom_requirements.txt..."
+    mv mom_requirements.txt OLD_mom_requirements.txt
+fi	
+
+echo "Moving mom_requirements.txt file here..."
+cp "${SCRIPT_DIR}"/mom_requirements.txt .
+
 # CHECK TO SEE WHAT SERVER WE ARE ON, CHANGE PATH APPROPRIATELY
 SERVER_NAME=$(hostname)
 
@@ -184,14 +192,23 @@ echo "You can get out of the environment by running the command:"
 echo deactivate
 echo
 echo
-echo NOTE: To use the ESMR library, you need gcc13 installed.
-echo Either \'module load use.own\' and \'module load openmp\'
-echo or make sure gcc -v returns \> 13. Otherwise, xemsf will
-echo not work in Python.
-echo
-echo If you are on monkfish, please load the ESMF module with
+echo NOTE:
+
+if [[ "$SERVER_NAME" == "rockfish" ]]; then
+    echo ROCKFISH: To use the ESMR library, you need gcc13 installed.
+    echo Either \'module load use.own\' and \'module load openmp\'
+    echo or make sure gcc -v returns \> 13. Otherwise, xemsf will
+    echo not work in Python.
+    echo
+fi
+
+if [[ "$SERVER_NAME" == "monkfish" ]]; then
+echo MONKFISH: please load the ESMF module with
 echo " 'module load esmf' "
 echo
+fi
+
+echo 
 echo done.
 echo
 
