@@ -3,33 +3,6 @@
 Modules available on this system are organized by environment and compiler. Each entry includes a brief description and tags for currently loaded `(L)` and default `(D)` modules.
 
 ---
-
-## 🔧 OpenMPI Stack — `/opt/sw/modules/linux-ubuntu22.04-x86_64/openmpi/4.1.6-rrw2r6f/Core`
-
-| Module Name                       | Description                                             | Notes     |
-|-----------------------------------|---------------------------------------------------------|-----------|
-| `cdo/2.2.2-rgmyuut`               | Climate Data Operators                                  |           |
-| `eccodes/2.25.0-mdwifdw`          | GRIB and BUFR encoding/decoding (ECMWF)                 |           |
-| `esmf/8.5.0-fvc74ay`              | Earth System Modeling Framework                         |           |
-| `nco/5.1.6-ok5oedt`               | NetCDF Operators for data manipulation                  |           |
-| `netcdf-c/4.9.2-75pgbfk`          | Core NetCDF C library                                   | **(L,D)** |
-| `netcdf-cxx4/4.3.1-zcuspaf`       | C++ interface to NetCDF                                 |           |
-| `netcdf-fortran/4.6.1-zgcmhqb`    | Fortran interface to NetCDF                             | **(L,D)** |
-| `netlib-scalapack/2.2.0-uuiv7oi`  | ScaLAPACK parallel linear algebra                       |           |
-| `parallel-netcdf/1.12.3-o45lllq`  | Parallel NetCDF for MPI applications                    |           |
-| `valgrind/3.20.0-hv57c5t`         | Memory debugging and profiling tool                     |           |
-
----
-
-## 🧪 AOCC Compiler Stack — `/opt/sw/modules/linux-ubuntu22.04-x86_64/aocc/4.1.0`
-
-| Module Name                     | Description                       | Notes     |
-|---------------------------------|-----------------------------------|-----------|
-| `openmpi/4.1.6-25i3e6u`         | OpenMPI built with AOCC 4.1.0     |           |
-| `openmpi/4.1.6-ztwqdhx`         | Default OpenMPI with AOCC         | **(D)**   |
-
----
-
 ## 🖥️ Core Modules — `/opt/sw/modules/linux-ubuntu22.04-x86_64/Core`
 
 | Module Name                          | Description                                      | Notes     |
@@ -65,6 +38,32 @@ Modules available on this system are organized by environment and compiler. Each
 | `subversion/1.14.2-s34wsh7`          | Version control (SVN)                           |           |
 | `tar/1.34-kvq7naq`                   | Tape Archiver                                   | **(L)**   |
 | `tau/2.33-ushwn34`                   | Tuning and Analysis Utilities                   |           |
+
+---
+
+## 🔧 OpenMPI Stack — `/opt/sw/modules/linux-ubuntu22.04-x86_64/openmpi/4.1.6-rrw2r6f/Core`
+These are shown by default because openmpi/4.1.6 is loaded in the core modules
+| Module Name                       | Description                                             | Notes     |
+|-----------------------------------|---------------------------------------------------------|-----------|
+| `cdo/2.2.2-rgmyuut`               | Climate Data Operators                                  |           |
+| `eccodes/2.25.0-mdwifdw`          | GRIB and BUFR encoding/decoding (ECMWF)                 |           |
+| `esmf/8.5.0-fvc74ay`              | Earth System Modeling Framework                         |           |
+| `nco/5.1.6-ok5oedt`               | NetCDF Operators for data manipulation                  |           |
+| `netcdf-c/4.9.2-75pgbfk`          | Core NetCDF C library                                   | **(L,D)** |
+| `netcdf-cxx4/4.3.1-zcuspaf`       | C++ interface to NetCDF                                 |           |
+| `netcdf-fortran/4.6.1-zgcmhqb`    | Fortran interface to NetCDF                             | **(L,D)** |
+| `netlib-scalapack/2.2.0-uuiv7oi`  | ScaLAPACK parallel linear algebra                       |           |
+| `parallel-netcdf/1.12.3-o45lllq`  | Parallel NetCDF for MPI applications                    |           |
+| `valgrind/3.20.0-hv57c5t`         | Memory debugging and profiling tool                     |           |
+
+---
+
+## 🧪 AOCC Compiler Stack — `/opt/sw/modules/linux-ubuntu22.04-x86_64/aocc/4.1.0`
+These require the aocc/4.1.0 module from the core modules to be loaded. Once aocc is loaded, the available modules expand to look very much like the OpenMPI stack above.
+| Module Name                     | Description                       | Notes     |
+|---------------------------------|-----------------------------------|-----------|
+| `openmpi/4.1.6-25i3e6u`         | OpenMPI built with AOCC 4.1.0     |           |
+| `openmpi/4.1.6-ztwqdhx`         | Default OpenMPI with AOCC         | **(D)**   |
 
 ---
 
