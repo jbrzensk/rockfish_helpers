@@ -17,6 +17,9 @@ This is separated into multiple folders:
 
 - [hello_world_mpi](/fortran/examples/hello_world_mpi.f90): A hello world example written in MPI and Fortran.
 
+## [modules](/modules): Module usage explanation
+- An explanation of the module system. Mostly pertains to monkfish, but rockfish uses the same system.
+  
 ## [netcdf](/netcdf): netCDF Helper Scripts
 
 - [netcdf_splitter](/netcdf/netcdf_splitter): Splits netCDF files into slices, with a common name stem. Computations are generally faster on smaller netCDF files. Files cna be combined at the end with [net_cdf_combiner](/netcdf/netcdf_combiner).
