@@ -17,7 +17,7 @@ This is separated into multiple folders:
 
 - [hello_world_mpi](/fortran/examples/hello_world_mpi.f90): A hello world example written in MPI and Fortran.
 
-## [modules](/modules): Module usage explanation
+## [modules](/modules/rockfish_modules.md): Module usage explanation
 - An explanation of the module system. Mostly pertains to monkfish, but rockfish uses the same system.
   
 ## [netcdf](/netcdf): netCDF Helper Scripts
