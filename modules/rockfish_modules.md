@@ -38,7 +38,7 @@ Modules available on this system are organized by environment and compiler. Each
 | `aocc/4.1.0-jbnmokw`                 | AMD Optimizing C/C++ Compiler                   |           |
 | `cmake/3.27.7-iecjvg7`               | CMake build system                              | **(L)**   |
 | `fftw/3.3.10-zx2ukb3`                | Fast Fourier Transform library  (for C )        |           |
-| `g2c/2.0.0-ryfoeub`                  | GRIB2 Fortran-to-C interface                    |           |
+| `g2c/2.0.0-ryfoeub`                  | GRIB2 Fortran-to-C interface (NCEP)             |           |
 | `gcc/11.4.0-gpa7gcm`                 | GNU Compiler Collection                         |           |
 | `gh/2.32.1-5b556bl`                  | GitHub CLI                                      |           |
 | `gnuplot/5.4.3-m6fdhjv`              | Plotting utility                                |           |
@@ -70,5 +70,19 @@ Modules available on this system are organized by environment and compiler. Each
 
 ## 🔍 Notes
 
-- **(L)** indicates a module that is currently **loaded** in the user environment.
+- **(L)** indicates a module that is **loaded** by default into the user environment.
 - **(D)** marks the **default version** of that module, automatically selected if no version is specified.
+
+Modules can take the full name of the command or the abbreviated version. Here are some equivalent commands:
+
+| Long Command          | Short Command       |
+|-----------------------|---------------------|
+|`module available`     | `ml av`             |
+|`module list`          | `ml`                |
+|`module load openmpi`  | `ml openmpi`        |
+|`module unload openmpi`| `ml -openmpi`       |
+
+- Remove all loaded modules with the command `ml purge`
+- Reset the environment to the default loadout with `ml reset`.
+- Search through packages for STRING using spider, `ml spider STRING`
+- Show all hidden modules `ml --show-all avail`
