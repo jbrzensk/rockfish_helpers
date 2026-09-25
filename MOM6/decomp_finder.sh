@@ -69,6 +69,20 @@ for X_PROC in $(seq 1 $NX); do
     fi
 
     RANKS=$(( X_PROC * Y_PROC ))
-    printf "%-8s %-8s %-8s %-10s %-10s %-10s\n" "$X_PROC" "$Y_PROC" "$RANKS" "$TILE_X" "$TILE_Y" "$VALID"
+    if [[ "$VALID" == "YES" ]]; then
+
+      # Check difference between the tiles
+      diff=$(( TILE_X > TILE_Y ? TILE_X - TILE_Y : TILE_Y - TILE_X ))
+
+      if (( diff <= 10 )); then
+        COLOR="\033[1;32m"
+        RESET="\033[0m"
+        printf "${COLOR}%-8s %-8s %-8s %-10s %-10s %-10s${RESET}\n" "$X_PROC" "$Y_PROC" "$RANKS" "$TILE_X" "$TILE_Y" "$VALID"
+      else
+        printf "%-8s %-8s %-8s %-10s %-10s %-10s\n" "$X_PROC" "$Y_PROC" "$RANKS" "$TILE_X" "$TILE_Y" "$VALID"
+      fi
+
+   fi
+
   done
 done | sort -nk3
