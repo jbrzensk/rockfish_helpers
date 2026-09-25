@@ -1,0 +1,16 @@
+MPI Commands for eacy living:
+#
+# To find the affinity of the first processor with thread numbers
+#
+#
+# This saves the processor cores to a rankfile
+for ((r=0; r<114; r++)); do     printf 'rank %d=%s slot=0:0-127\n' "$r" "$node"; done > socket0.rankfile
+for ((r=0; r<114; r++)); do     printf 'rank %d=%s slot=1:0-127\n' "$r" "$node"; done > socket1.rankfile
+#
+# See what cores you have chosen
+cat socket0.rankfile
+cat socket1.rankfile
+
+# Then run with mpi using the rankfile (0 or 1) just generated
+mpiexec -np 114 --rankfile socket0.rankfile --report-bindings ./MOM6SIS2_FEISTY 
+
